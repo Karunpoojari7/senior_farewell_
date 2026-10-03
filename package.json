@@ -4,13 +4,13 @@
   "private": true,
   "description": "SENIOR MISCHIEF 😈 - Interactive Farewell Experience for 71 MCA Seniors",
   "scripts": {
-    "dev": "npm --prefix client run dev",
-    "dev:client": "npm --prefix client run dev",
-    "dev:server": "npm --prefix server run dev",
-    "client:install": "npm --prefix client install",
-    "server:install": "npm --prefix server install",
-    "install:all": "npm run client:install && npm run server:install",
-    "build": "npm --prefix client run build && npm --prefix server run build"
+    "dev": "npm --prefix frontend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "dev:backend": "npm --prefix backend run dev",
+    "frontend:install": "npm --prefix frontend install",
+    "backend:install": "npm --prefix backend install",
+    "install:all": "npm run frontend:install && npm run backend:install",
+    "build": "npm --prefix frontend run build && npm --prefix backend run build"
   },
   "keywords": [
     "farewell",

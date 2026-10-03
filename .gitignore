@@ -21,8 +21,8 @@ dist-ssr
 *.env
 
 # Temporary storage & counter state
-server/public/uploads/*
-!server/public/uploads/.gitkeep
-server/public/generated/*
-!server/public/generated/.gitkeep
-server/data/*.json
+backend/public/uploads/*
+!backend/public/uploads/.gitkeep
+backend/public/generated/*
+!backend/public/generated/.gitkeep
+backend/data/*.json
