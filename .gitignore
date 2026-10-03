@@ -1,0 +1,28 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependencies and Builds
+node_modules
+dist
+dist-ssr
+*.local
+.DS_Store
+
+# Environment variables & secrets
+.env
+.env.*
+!.env.example
+*.env
+
+# Temporary storage & counter state
+server/public/uploads/*
+!server/public/uploads/.gitkeep
+server/public/generated/*
+!server/public/generated/.gitkeep
+server/data/*.json
