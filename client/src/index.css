@@ -1,0 +1,229 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'Courier Prime', 'Space Grotesk', monospace;
+    --font-marker: 'Permanent Marker', cursive;
+    --font-hand: 'Caveat', cursive;
+    --font-scribble: 'Covered By Your Grace', cursive;
+    --font-kalam: 'Kalam', cursive;
+    --font-bangers: 'Bangers', Impact, sans-serif;
+    --font-bungee: 'Bungee', sans-serif;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: #0b1526;
+    color: #1e293b;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+.font-marker { font-family: var(--font-marker) !important; }
+.font-hand { font-family: var(--font-hand) !important; }
+.font-scribble { font-family: var(--font-scribble) !important; }
+.font-kalam { font-family: var(--font-kalam) !important; }
+.font-bangers { font-family: var(--font-bangers) !important; }
+.font-bungee { font-family: var(--font-bungee) !important; }
+.font-monoRetro { font-family: var(--font-mono) !important; }
+
+/* Scrapbook Background Textures & Patterns */
+.scrapbook-bg {
+  background-color: #0b1526;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(29, 78, 216, 0.18) 0%, transparent 40%),
+    radial-gradient(circle at 90% 85%, rgba(13, 148, 136, 0.15) 0%, transparent 45%),
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 2px, transparent 2px, transparent 6px);
+}
+
+.graph-paper-bg {
+  background-color: #F8F4EC;
+  background-image: 
+    linear-gradient(rgba(170, 160, 140, 0.22) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(170, 160, 140, 0.22) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.torn-parchment-sheet {
+  background-color: #f7f1e5;
+  background-image: 
+    radial-gradient(#d4c7b2 0.75px, transparent 0.75px),
+    linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(0,0,0,0.02) 100%);
+  background-size: 16px 16px, 100% 100%;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  position: relative;
+}
+
+/* Washi / Masking Tape Strips */
+.washi-tape {
+  background: rgba(255, 237, 160, 0.8);
+  backdrop-filter: blur(1px);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  border-left: 2px dashed rgba(200,180,100,0.4);
+  border-right: 2px dashed rgba(200,180,100,0.4);
+}
+
+.washi-tape-dark {
+  background: rgba(220, 195, 150, 0.85);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  border-left: 2px dashed rgba(160,130,90,0.5);
+  border-right: 2px dashed rgba(160,130,90,0.5);
+}
+
+/* Chalkboard / Dark Paper Dropzone */
+.torn-chalkboard {
+  background-color: #171b22;
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.04) 0%, transparent 80%),
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.02) 0px, transparent 1px, transparent 3px);
+  box-shadow: 
+    inset 0 0 20px rgba(0,0,0,0.8),
+    0 8px 24px -2px rgba(0,0,0,0.5);
+  position: relative;
+}
+
+/* Ripped CTA Buttons */
+.torn-cta-button, .torn-btn {
+  background: linear-gradient(93deg, #FF7A00 0%, #EA0860 60%, #C4004F 100%);
+  box-shadow: 0 10px 25px -4px rgba(244, 20, 112, 0.5), 0 4px 10px rgba(0,0,0,0.3);
+  clip-path: polygon(
+    0% 8%, 4% 0%, 12% 5%, 20% 0%, 35% 4%, 48% 0%, 65% 5%, 80% 0%, 93% 6%, 100% 2%,
+    99% 35%, 100% 68%, 98% 95%, 90% 98%, 78% 94%, 60% 100%, 42% 95%, 25% 99%, 10% 94%, 1% 98%,
+    0% 70%, 2% 40%
+  );
+}
+
+/* Letter Ransom Cutouts */
+.letter-scrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bangers', Impact, sans-serif;
+  font-size: 1.75rem;
+  line-height: 1;
+  width: 2.25rem;
+  height: 2.75rem;
+  box-shadow: 1px 2px 4px rgba(0,0,0,0.3);
+  user-select: none;
+  transition: transform 0.15s ease-in-out;
+}
+
+.letter-scrap:hover {
+  transform: scale(1.1) rotate(0deg) !important;
+}
+
+.vinyl-grooves {
+  background: repeating-radial-gradient(circle at center, #1b1b1b, #1b1b1b 2px, #0e0e0e 3px, #0e0e0e 5px);
+}
+
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0px) rotate(var(--rot, 0deg)); }
+  50% { transform: translateY(-5px) rotate(calc(var(--rot, 0deg) + 1.5deg)); }
+}
+
+.sticker-float {
+  animation: float-gentle 4s ease-in-out infinite;
+}
+
+/* Custom glowing effects and glassmorphism */
+.glass-panel {
+  background: rgba(15, 17, 26, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.glass-card {
+  background: rgba(22, 25, 38, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.glass-card-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-card-hover:hover {
+  border-color: rgba(245, 158, 11, 0.3);
+  box-shadow: 0 10px 30px -10px rgba(245, 158, 11, 0.2);
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #FFF7ED 0%, #FBBF24 50%, #D97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-purple {
+  background: linear-gradient(135deg, #FDF4FF 0%, #C084FC 50%, #7E22CE 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-mischief {
+  background: linear-gradient(135deg, #FED7AA 0%, #FB923C 30%, #EC4899 70%, #A855F7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glow-ambient-gold {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.15) 0%, rgba(245, 158, 11, 0) 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.glow-ambient-purple {
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, rgba(168, 85, 247, 0) 70%);
+  filter: blur(50px);
+  pointer-events: none;
+}
+
+/* Cinematic scan line & shimmer */
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(1000%); }
+}
+
+.animate-scanline {
+  animation: scanline 4s linear infinite;
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 5s ease-in-out infinite;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #07080e;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e2235;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #333954;
+}
