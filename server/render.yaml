@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: senior-mischief-backend
+    env: node
+    plan: free
+    region: singapore
+    rootDir: server
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: FRONTEND_URL
+        sync: false
+      - key: MAX_GENERATIONS
+        value: 100
+      - key: MOCK_AI
+        value: true
+      - key: GEMINI_API_KEY
+        sync: false
