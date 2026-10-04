@@ -5,7 +5,6 @@ import { toPng } from 'html-to-image';
 import { Download, Share2, Sparkles, RotateCcw, Check, Trophy } from 'lucide-react';
 import { useMischiefStore } from '../store/useMischiefStore';
 import { FAREWELL_THEMES, BATCH_DETAILS } from '../config/themes';
-import { InvitationCard } from './InvitationCard';
 
 const FALLBACK_MOCK_IMAGE = '/mock-art.svg';
 
@@ -249,7 +248,7 @@ export const RevealScreen: React.FC = () => {
         </button>
       </motion.div>
 
-      <div className="mt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <div className="mt-4 flex items-center justify-center">
         <button
           type="button"
           onClick={resetMischief}
@@ -258,18 +257,7 @@ export const RevealScreen: React.FC = () => {
           <RotateCcw className="w-3.5 h-3.5" />
           <span>Transform Another Photo</span>
         </button>
-
-        <button
-          type="button"
-          onClick={() => setStep('invitation')}
-          className="inline-flex items-center gap-1.5 text-xs font-monoRetro text-rose-700 hover:text-rose-900 font-bold transition cursor-pointer underline"
-        >
-          <span>View Farewell Invitation ✉️</span>
-        </button>
       </div>
-
-      {/* FAREWELL INVITATION SECTION PASSING SENIOR NAME */}
-      <InvitationCard seniorName={seniorName} />
     </div>
   );
 };
