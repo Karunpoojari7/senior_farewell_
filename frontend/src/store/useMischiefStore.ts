@@ -14,6 +14,7 @@ interface MischiefStore {
   result: GenerationResult | null;
   errorMessage: string | null;
   useMock: boolean;
+  hasSubmittedQuiz: boolean;
   
   // Actions
   setStep: (step: AppStep) => void;
@@ -22,6 +23,7 @@ interface MischiefStore {
   setResult: (result: GenerationResult | null) => void;
   setErrorMessage: (msg: string | null) => void;
   setUseMock: (useMock: boolean) => void;
+  setHasSubmittedQuiz: (submitted: boolean) => void;
   resetMischief: () => void;
   processMischief: () => Promise<void>;
 }
@@ -56,9 +58,21 @@ export const useMischiefStore = create<MischiefStore>((set, get) => ({
   result: null,
   errorMessage: null,
   useMock: false,
+  hasSubmittedQuiz: typeof window !== 'undefined' ? Boolean(localStorage.getItem('mischief_quiz_submitted')) : false,
 
   setStep: (step) => set({ step }),
   setSeniorName: (seniorName) => set({ seniorName }),
+
+  setHasSubmittedQuiz: (submitted) => {
+    if (typeof window !== 'undefined') {
+      if (submitted) {
+        localStorage.setItem('mischief_quiz_submitted', 'true');
+      } else {
+        localStorage.removeItem('mischief_quiz_submitted');
+      }
+    }
+    set({ hasSubmittedQuiz: submitted });
+  },
 
   setSelectedFile: (file) => {
     const prevUrl = get().previewUrl;
