@@ -237,7 +237,7 @@ export const RevealScreen: React.FC = () => {
           </h4>
         </div>
         <p className="font-hand font-bold text-stone-900 text-sm sm:text-base mb-3 leading-snug">
-          Tag your senior friends for 10 hilarious awards! Winner gets exciting hampers & prizes on Farewell day! 🎁✨
+          Tag your friends for 10 hilarious awards! Winner gets exciting hampers & prizes on Farewell day! 🎁✨
         </p>
         <button
           type="button"

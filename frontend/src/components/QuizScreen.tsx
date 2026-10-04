@@ -32,7 +32,7 @@ export const QuizScreen: React.FC = () => {
     })).filter((item) => item.taggedName.length > 0);
 
     if (filledNominations.length === 0) {
-      setErrorMsg('Please tag at least one senior friend for any award before submitting! 🎓');
+      setErrorMsg('Please tag at least one friend for any award before submitting! 🎓');
       return;
     }
 
@@ -76,14 +76,14 @@ export const QuizScreen: React.FC = () => {
     <div className="relative text-center max-w-xl mx-auto">
       {/* Top Stamp Header */}
       <div className="inline-block bg-amber-400 text-stone-900 font-marker text-xs sm:text-sm tracking-wider px-4 py-1 rounded shadow transform -rotate-1 mb-3">
-        🏆 KNOW YOURSELF SENIOR AWARDS QUIZ
+        🏆 KNOW YOURSELF AWARDS QUIZ
       </div>
 
       <h2 className="font-marker text-2xl sm:text-3xl text-stone-900 tracking-wide uppercase mb-1">
-        TAG YOUR SENIOR FRIENDS! 👑
+        TAG YOUR FRIENDS! 👑
       </h2>
       <p className="font-hand font-bold text-base sm:text-lg text-stone-800 leading-tight mb-4">
-        {seniorName ? `Hey ${seniorName}! ` : ''}Nominate your fellow seniors for these 10 legendary awards!
+        {seniorName ? `Hey ${seniorName}! ` : ''}Nominate your friends for these 10 legendary awards!
       </p>
 
       {/* Prizes Banner Card */}
@@ -99,7 +99,7 @@ export const QuizScreen: React.FC = () => {
               <span>EVENT PRIZES & TROPHIES</span>
             </div>
             <p className="text-xs text-stone-800 font-bold font-hand text-sm mt-0.5 leading-snug">
-              🎁 Top nominated seniors win exclusive MCA Farewell Superlative Trophies & Special Hampers live at the event!
+              🎁 Top nominated friends win exclusive MCA Farewell Superlative Trophies & Special Hampers live at the event!
             </p>
           </div>
         </div>
@@ -134,7 +134,7 @@ export const QuizScreen: React.FC = () => {
                   type="text"
                   value={taggedVal}
                   onChange={(e) => handleInputChange(q.id, e.target.value)}
-                  placeholder="Tag a Senior Friend's Name (e.g. Preetham)..."
+                  placeholder="Tag a Friend's Name (e.g. Preetham)..."
                   className="w-full bg-white text-stone-900 placeholder-stone-400 px-3 py-2 rounded border-2 border-stone-300 focus:border-amber-500 focus:outline-none font-bold text-xs sm:text-sm shadow-inner"
                   maxLength={40}
                 />
