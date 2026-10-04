@@ -178,11 +178,24 @@ export const ScrapbookContainer: React.FC<ScrapbookContainerProps> = ({
 
       {/* BEGIN: Scrapbook Heritage Footer */}
       <footer className="relative z-30 bg-[#0b172e]/95 border-t border-blue-900/60 py-3 px-4 text-center">
-        <div className="flex items-center justify-center gap-1.5 mb-0.5 text-amber-300/90 text-xs">
-          <span>🎗️</span>
-          <p className="font-monoRetro font-bold text-[10px] sm:text-[11px] tracking-wider uppercase text-slate-200">
-            {BATCH_DETAILS.department} • {BATCH_DETAILS.university}
-          </p>
+        <div className="flex items-center justify-between">
+          <div className="flex-1" />
+          <div className="flex items-center justify-center gap-1.5 mb-0.5 text-amber-300/90 text-xs">
+            <span>🎗️</span>
+            <p className="font-monoRetro font-bold text-[10px] sm:text-[11px] tracking-wider uppercase text-slate-200">
+              {BATCH_DETAILS.department} • {BATCH_DETAILS.university}
+            </p>
+          </div>
+          <div className="flex-1 flex justify-end">
+            <button
+              type="button"
+              onClick={() => setStep('admin')}
+              className="text-slate-600 hover:text-amber-300 text-[10px] transition cursor-pointer p-1"
+              title="Creator Admin View"
+            >
+              🔒
+            </button>
+          </div>
         </div>
         <p className="text-[9px] sm:text-[10px] font-semibold text-slate-400 tracking-wide">
           DEDICATED TO 71 MCA SENIORS WITH JUNIOR LOVE <span className="text-pink-500 inline-block animate-pulse">❤️</span>

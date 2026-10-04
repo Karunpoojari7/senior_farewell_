@@ -5,6 +5,7 @@ import { limitService } from '../services/limit.service.js';
 import { themeService } from '../services/theme.service.js';
 import { aiService, AIServiceError } from '../services/ai.service.js';
 import { storageService } from '../services/storage.service.js';
+import { quizService } from '../services/quiz.service.js';
 import { BATCH_DETAILS } from '../config/themes.js';
 
 export const mischiefRouter = Router();
@@ -112,5 +113,60 @@ mischiefRouter.get('/stats', (req: Request, res: Response) => {
       isLimitReached: limitService.isLimitReached(),
       batch: BATCH_DETAILS.batch
     }
+  });
+});
+
+/**
+ * POST /api/mischief/quiz
+ * Endpoint to submit Know Yourself Senior Awards Quiz nominations
+ */
+mischiefRouter.post('/quiz', (req: Request, res: Response) => {
+  try {
+    const { submittedBy, nominations } = req.body;
+    if (!nominations || !Array.isArray(nominations)) {
+      res.status(400).json({
+        success: false,
+        message: 'Invalid quiz nominations format.'
+      });
+      return;
+    }
+
+    const record = quizService.saveSubmission(submittedBy || 'Anonymous Senior', nominations);
+    res.json({
+      success: true,
+      message: 'Quiz nominations submitted successfully! 🎉',
+      submissionId: record.id
+    });
+  } catch (err) {
+    console.error('[Quiz] Submission error:', err);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to record quiz submission.'
+    });
+  }
+});
+
+/**
+ * GET /api/mischief/admin/nominations
+ * Secret Creator Admin endpoint to view all tagged senior award nominations & summary
+ */
+mischiefRouter.get('/admin/nominations', (req: Request, res: Response) => {
+  const secretKey = (req.query.secret as string) || (req.headers['x-admin-secret'] as string);
+  const EXPECTED_SECRET = process.env.ADMIN_SECRET || 'mischief2026';
+
+  if (secretKey !== EXPECTED_SECRET) {
+    res.status(401).json({
+      success: false,
+      message: 'Unauthorized. Secret key required to view creator nominations database.'
+    });
+    return;
+  }
+
+  const summary = quizService.getSummaryStats();
+  res.json({
+    success: true,
+    totalSubmissions: summary.totalSubmissions,
+    awardLeaderboard: summary.awardLeaderboard,
+    rawSubmissions: summary.rawSubmissions
   });
 });

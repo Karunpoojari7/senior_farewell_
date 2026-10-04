@@ -10,7 +10,16 @@ export interface MischiefTheme {
   badgeEmoji?: string;
 }
 
-export type AppStep = 'landing' | 'upload' | 'processing' | 'reveal' | 'error' | 'limit_reached';
+export type AppStep =
+  | 'landing'
+  | 'upload'
+  | 'processing'
+  | 'reveal'
+  | 'quiz'
+  | 'invitation'
+  | 'admin'
+  | 'error'
+  | 'limit_reached';
 
 export interface GenerationResult {
   success: boolean;
@@ -27,4 +36,25 @@ export interface GenerationResult {
   };
   code?: string;
   message?: string;
+}
+
+export interface QuizQuestion {
+  id: string;
+  number: number;
+  emoji: string;
+  title: string;
+  tagline: string;
+}
+
+export interface QuizNominationPayload {
+  awardId: string;
+  awardTitle: string;
+  taggedName: string;
+}
+
+export interface QuizSubmissionRecord {
+  id: string;
+  submittedBy: string;
+  submittedAt: string;
+  nominations: QuizNominationPayload[];
 }

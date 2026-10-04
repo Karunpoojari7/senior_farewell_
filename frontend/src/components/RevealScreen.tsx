@@ -10,7 +10,7 @@ import { InvitationCard } from './InvitationCard';
 const FALLBACK_MOCK_IMAGE = '/mock-art.svg';
 
 export const RevealScreen: React.FC = () => {
-  const { result, resetMischief, previewUrl, seniorName } = useMischiefStore();
+  const { result, resetMischief, previewUrl, seniorName, setStep } = useMischiefStore();
   const cardRef = useRef<HTMLDivElement>(null);
   const [isDownloading, setIsDownloading] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -224,7 +224,32 @@ export const RevealScreen: React.FC = () => {
         </button>
       </motion.div>
 
-      <div className="mt-4 flex items-center justify-center">
+      {/* NEXT STEP: SENIOR AWARDS QUIZ CTA */}
+      <motion.div
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        className="mt-6 p-4 sm:p-5 rounded-xl bg-gradient-to-r from-amber-400 via-amber-300 to-rose-400 text-stone-900 border-2 border-stone-900 shadow-xl max-w-md mx-auto transform hover:-rotate-1 transition-transform text-center"
+      >
+        <div className="flex items-center gap-2 mb-1 justify-center">
+          <Trophy className="w-6 h-6 text-stone-900 animate-bounce" />
+          <h4 className="font-marker text-xl sm:text-2xl text-stone-900 uppercase tracking-wide">
+            KNOW YOURSELF QUIZ 🏆
+          </h4>
+        </div>
+        <p className="font-hand font-bold text-stone-900 text-sm sm:text-base mb-3 leading-snug">
+          Tag your senior friends for 10 hilarious awards! Winner gets exciting hampers & prizes on Farewell day! 🎁✨
+        </p>
+        <button
+          type="button"
+          onClick={() => setStep('quiz')}
+          className="w-full py-3.5 px-5 rounded-lg bg-stone-900 hover:bg-stone-800 text-amber-300 font-marker text-lg tracking-wider shadow-lg flex items-center justify-center gap-2 cursor-pointer transition active:scale-[0.98] border border-amber-400"
+        >
+          <span>TAKE QUIZ & TAG FRIENDS ➔</span>
+        </button>
+      </motion.div>
+
+      <div className="mt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
         <button
           type="button"
           onClick={resetMischief}
@@ -232,6 +257,14 @@ export const RevealScreen: React.FC = () => {
         >
           <RotateCcw className="w-3.5 h-3.5" />
           <span>Transform Another Photo</span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setStep('invitation')}
+          className="inline-flex items-center gap-1.5 text-xs font-monoRetro text-rose-700 hover:text-rose-900 font-bold transition cursor-pointer underline"
+        >
+          <span>View Farewell Invitation ✉️</span>
         </button>
       </div>
 
