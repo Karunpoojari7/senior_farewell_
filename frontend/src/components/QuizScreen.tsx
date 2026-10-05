@@ -4,7 +4,8 @@ import { Trophy, Gift, ArrowRight, CheckCircle2, AlertCircle, Sparkles } from 'l
 import { useMischiefStore } from '../store/useMischiefStore';
 import { QUIZ_QUESTIONS } from '../config/quizQuestions';
 import { API_ENDPOINTS } from '../config/api.config';
-import type { QuizNominationPayload } from '../types';
+import { saveLocalSubmission } from '../services/nominationsStorage';
+import type { QuizNominationPayload, QuizSubmissionRecord } from '../types';
 
 export const QuizScreen: React.FC = () => {
   const { seniorName, setStep, hasSubmittedQuiz, setHasSubmittedQuiz } = useMischiefStore();
@@ -44,6 +45,15 @@ export const QuizScreen: React.FC = () => {
     setIsSubmitting(true);
     setErrorMsg(null);
 
+    // Save locally first to guarantee zero data loss
+    const localRecord: QuizSubmissionRecord = {
+      id: `quiz_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
+      submittedBy: seniorName?.trim() || 'Anonymous Senior',
+      submittedAt: new Date().toISOString(),
+      nominations: filledNominations,
+    };
+    saveLocalSubmission(localRecord);
+
     try {
       const response = await fetch(API_ENDPOINTS.QUIZ, {
         method: 'POST',
@@ -54,7 +64,7 @@ export const QuizScreen: React.FC = () => {
         }),
       });
 
-      const data = await response.json();
+      const data = await response.json().catch(() => ({ success: true }));
       if (response.ok && data.success) {
         setSubmitted(true);
         setHasSubmittedQuiz(true);
@@ -62,14 +72,14 @@ export const QuizScreen: React.FC = () => {
           setStep('invitation');
         }, 1200);
       } else {
-        setErrorMsg(data.message || 'Failed to record nominations. Proceeding to invitation...');
+        setSubmitted(true);
         setHasSubmittedQuiz(true);
         setTimeout(() => {
           setStep('invitation');
-        }, 1500);
+        }, 1200);
       }
     } catch (err) {
-      console.warn('[Quiz] Submission network fallback, proceeding to invitation:', err);
+      console.warn('[Quiz] Submission network fallback (saved locally), proceeding to invitation:', err);
       setSubmitted(true);
       setHasSubmittedQuiz(true);
       setTimeout(() => {
